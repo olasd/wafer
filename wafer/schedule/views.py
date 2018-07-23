@@ -15,7 +15,7 @@ from wafer.schedule.admin import check_schedule, validate_schedule
 from wafer.schedule.models import ScheduleItem
 from wafer.schedule.serializers import ScheduleItemSerializer
 from wafer.talks.models import ACCEPTED, CANCELLED
-from wafer.talks.models import Talk
+from wafer.talks.models import Talk, Track
 
 
 class ScheduleRow(object):
@@ -148,6 +148,7 @@ class ScheduleView(TemplateView):
             if pos < len(sorted_days) - 1:
                 context['next_day'] = sorted_days[pos + 1]
         context['schedule_days'] = generate_schedule(schedule_day)
+        context['tracks'] = Track.objects.all()
         return context
 
 
